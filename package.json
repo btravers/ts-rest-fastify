@@ -22,6 +22,7 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/platform-fastify": "^9.4.3",
     "@ts-rest/core": "^3.26.0",
     "@ts-rest/nest": "^3.26.0",
     "reflect-metadata": "^0.1.13",
