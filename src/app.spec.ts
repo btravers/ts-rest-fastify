@@ -1,4 +1,4 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 import * as request from 'supertest';
@@ -9,13 +9,19 @@ describe('AppController (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    const module = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication(new FastifyAdapter());
+    app = module.createNestApplication(new FastifyAdapter());
+
+    app.enableShutdownHooks();
 
     await app.init();
+
+    await (app.getHttpAdapter() as unknown as FastifyAdapter)
+      .getInstance()
+      .ready();
   });
 
   it('/posts (GET) list empty', async () => {

@@ -25,7 +25,9 @@ export class AppController {
         };
       },
 
-      getPosts: async () => {
+      getPosts: async ({ query }) => {
+        console.log(query);
+
         return { status: 200, body: this.posts };
       },
 

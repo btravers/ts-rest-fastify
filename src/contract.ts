@@ -29,6 +29,9 @@ export const contract = c.router(
     getPosts: {
       method: 'GET',
       path: `/posts`,
+      query: z.object({
+        page: z.coerce.string().optional(),
+      }),
       responses: {
         200: postSchema.array(),
       },
